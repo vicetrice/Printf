@@ -1,54 +1,70 @@
 #include "ft_printf.h"
+#include <stdio.h>
 
-void	ft_choices(va_list argument, const char c);
+int	ft_choices(va_list argument, const char c);
 
 int	ft_printf(char const *str, ...)
 {
 	int		i;
 	va_list	argument;
+	int size;
 
 	i = 0;
+	size = 0;
 	va_start(argument, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
-			ft_choices(argument, str[++i]);
+			size += ft_choices(argument, str[++i]);
 		}
 		else
+		{
 			write(1, &str[i], 1);
+			++size;
+		}
 		++i;
-	}
-	return (0);
+	}	
+	return (size);
 }
 
-void	ft_choices(va_list argument, const char c)
+int	ft_choices(va_list argument, const char c)
 {
+	int	len;
 	if (c == 'c')
-		ft_printchar(va_arg(argument, const int));
+		len = ft_printchar(va_arg(argument, const int));
 	else if (c == 's')
-		ft_printstr(va_arg(argument, char *));
+		len = ft_printstr(va_arg(argument, char *));
 	else if (c == 'p')
-		ft_printptr(va_arg(argument, unsigned long long));
+		len = ft_printptr(va_arg(argument, unsigned long long));
 	else if (c == 'd' || c == 'i')
-		ft_printnbr(va_arg(argument, int));
+		len = ft_printnbr(va_arg(argument, int));
 	else if (c == 'u')
-		ft_printunsgnd(va_arg(argument, unsigned int));
+		len = ft_printunsgnd(va_arg(argument, unsigned int));
 	else if (c == 'x' || c == 'X')
-		ft_printhex(va_arg(argument, unsigned int), c);
+		len = ft_printhex(va_arg(argument, unsigned int), c);
 	else
-		ft_printchar(c);
+		len = ft_printchar(c);
+	return(len);
 }
 
-void	ft_printchar(const char c)
+int	ft_printchar(const char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
-/*
-int main()
-{
-	int *p = NULL;
-	unsigned l = 1245125;
 
-	ft_printf("direccion puntero en decimal y hex %p,\n num : %x , %X ", p,l,l);
-}*/
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+	int *p;
+	int l,m;
+	int q = atoi(argv[1]);
+	p = NULL;
+
+	l = ft_printf("hola loco %X", q);
+	printf("%d",l);
+	m = 	printf("hola loco %X",q);
+	printf("%d",m);
+}

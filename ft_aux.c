@@ -1,66 +1,67 @@
 #include "ft_printf.h"
 
-void	ft_auxptr(unsigned long long drcton)
+void	ft_auxptr(unsigned long long drcton, int *coun)
 {
 	if (drcton >= 16)
 	{
-		ft_auxptr(drcton / 16);
+		ft_auxptr(drcton / 16, coun);
 		drcton %= 16;
 	}
 	if (drcton < 10)
-		ft_printchar(drcton + '0');
+		(*coun) += ft_printchar(drcton + '0');
 	else if (drcton >= 10)
-		ft_printchar(drcton + 'a' - 10);
+		(*coun) += ft_printchar(drcton + 'a' - 10);
+
 }
 
-void	ft_auxnbr(int nb)
+void	ft_auxnbr(int nb, int *contu)
 {
 	if (nb == -2147483648)
 	{
-		ft_printchar('-');
-		ft_printchar('2');
+		(*contu) += ft_printchar('-');
+		(*contu) += ft_printchar('2');
 		nb = 147483648;
 	}
 	if (nb < 0)
 	{
-		ft_printchar('-');
+		(*contu) += ft_printchar('-');
 		nb *= -1;
 	}
 	if (nb >= 10)
 	{
-		ft_auxnbr(nb / 10);
-		ft_auxnbr(nb % 10);
+		ft_auxnbr(nb / 10, contu);
+		ft_auxnbr(nb % 10, contu);
 	}
 	else
 	{
-		ft_printchar(nb + '0');
+		(*contu) += ft_printchar(nb + '0');
 	}
 }
 
-void	ft_auxunbr(unsigned int unb)
+void	ft_auxunbr(unsigned int unb, int *k)
 {
 	if (unb >= 10)
 	{
-		ft_auxunbr(unb / 10);
-		ft_auxunbr(unb % 10);
+		ft_auxunbr(unb / 10, k);
+		ft_auxunbr(unb % 10, k);
 	}
 	else
 	{
-		ft_printchar(unb + '0');
+		(*k) += ft_printchar(unb + '0');
 	}
 }
 
-void	ft_auxhex(unsigned int numi, const char cap)
+void	ft_auxhex(unsigned int numi, const char cap, int *l)
 {
 	if (numi >= 16)
 	{
-		ft_auxhex(numi / 16, cap);
+		ft_auxhex(numi / 16, cap, l);
 		numi %= 16;
 	}
 	if (numi < 10)
-		ft_printchar(numi + '0');
+		(*l) += ft_printchar(numi + '0');
 	else if (numi >= 10 && cap == 'x')
-		ft_printchar(numi + 'a' - 10);
+		(*l) += ft_printchar(numi + 'a' - 10);
 	else if (numi >= 10 && cap == 'X')
-		ft_printchar(numi + 'A' - 10);
+		(*l) += ft_printchar(numi + 'A' - 10);
 }

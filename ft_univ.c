@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	ft_printstr(char *s)
+int	ft_printstr(char *s)
 {
 	int	cont;
 
@@ -8,26 +8,42 @@ void	ft_printstr(char *s)
 	while (s[cont])
 		++cont;
 	write(1, s, cont);
+	return(cont);
 }
 
-void	ft_printptr(unsigned long long ptr)
+int	ft_printptr(unsigned long long ptr)
 {
+	int	leni;
+	
+	leni = 0;
 	ft_printstr("0x");
-	ft_auxptr(ptr);
+	ft_auxptr(ptr, &leni);
+	return (leni);
 }
 
-void	ft_printnbr(int n)
+int	ft_printnbr(int n)
 {
-	ft_auxnbr(n);
+	int axu;
+
+	axu = 0;
+	ft_auxnbr(n, &axu);
+	return (axu);
 }
 
-void	ft_printunsgnd(unsigned int un)
+int	ft_printunsgnd(unsigned int un)
 {
-	ft_auxunbr(un);
+	int	j;
+
+	j = 0;
+	ft_auxunbr(un, &j);
+	return (j);
 }
 
-void	ft_printhex(unsigned int hex, const char w)
+int	ft_printhex(unsigned int hex, const char w)
 {
-	ft_printstr("0x");
-	ft_auxhex(hex, w);
+	int	h;
+
+	h = 0;
+	ft_auxhex(hex, w, &h);
+	return (h);
 }
