@@ -1,5 +1,4 @@
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_choices(va_list argument, const char c);
 
@@ -53,9 +52,7 @@ int	ft_printchar(const char c)
 	write(1, &c, 1);
 	return (1);
 }
-
-#include <stdlib.h>
-
+/*
 int main(int argc, char *argv[])
 {
 	int *p;
@@ -67,4 +64,4 @@ int main(int argc, char *argv[])
 	printf("%d",l);
 	m = 	printf("hola loco %X",q);
 	printf("%d",m);
-}
+}*/
