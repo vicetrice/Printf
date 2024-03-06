@@ -6,7 +6,7 @@
 /*   By: valvarad <valvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:17:12 by valvarad          #+#    #+#             */
-/*   Updated: 2024/03/06 11:45:53 by valvarad         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:47:40 by valvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_printf(char const *str, ...)
 		}
 		++i;
 	}
+	va_end(argument);
 	return (size);
 }
 
