@@ -6,7 +6,7 @@
 /*   By: valvarad <valvarad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:17:12 by valvarad          #+#    #+#             */
-/*   Updated: 2024/03/06 12:47:40 by valvarad         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:25:09 by valvarad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ int	ft_printf(char const *str, ...)
 
 	i = 0;
 	size = 0;
+	if (write(1, "", 0) == -1)
+		return (-1);
 	va_start(argument, str);
+	if (!str)
+		return (-1);
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
 			size += ft_choices(argument, str[++i]);
-		}
 		else
 		{
 			write(1, &str[i], 1);
