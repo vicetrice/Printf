@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_aux.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: valvarad <valvarad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/06 11:15:09 by valvarad          #+#    #+#             */
+/*   Updated: 2024/03/06 11:16:54 by valvarad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "ft_printf.h"
 
 void	ft_auxptr(unsigned long long drcton, int *coun)
@@ -11,7 +22,6 @@ void	ft_auxptr(unsigned long long drcton, int *coun)
 		(*coun) += ft_printchar(drcton + '0');
 	else if (drcton >= 10)
 		(*coun) += ft_printchar(drcton + 'a' - 10);
-
 }
 
 void	ft_auxnbr(int nb, int *contu)

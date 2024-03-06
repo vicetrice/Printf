@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: valvarad <valvarad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/06 11:17:12 by valvarad          #+#    #+#             */
+/*   Updated: 2024/03/06 11:45:53 by valvarad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_choices(va_list argument, const char c);
@@ -6,7 +18,7 @@ int	ft_printf(char const *str, ...)
 {
 	int		i;
 	va_list	argument;
-	int size;
+	int		size;
 
 	i = 0;
 	size = 0;
@@ -23,13 +35,14 @@ int	ft_printf(char const *str, ...)
 			++size;
 		}
 		++i;
-	}	
+	}
 	return (size);
 }
 
 int	ft_choices(va_list argument, const char c)
 {
 	int	len;
+
 	if (c == 'c')
 		len = ft_printchar(va_arg(argument, const int));
 	else if (c == 's')
@@ -44,7 +57,7 @@ int	ft_choices(va_list argument, const char c)
 		len = ft_printhex(va_arg(argument, unsigned int), c);
 	else
 		len = ft_printchar(c);
-	return(len);
+	return (len);
 }
 
 int	ft_printchar(const char c)
@@ -53,14 +66,15 @@ int	ft_printchar(const char c)
 	return (1);
 }
 /*
-int main(int argc, char *argv[])
+#include <stdio.h>
+int main()
 {
-	int *p;
-	int l,m;
-	int q = atoi(argv[1]);
-	p = NULL;
+	//int *p;
+	int l;
+	//int q = 20;
+		//p = NULL;
 
-	l = ft_printf("hola loco %X", q);
+	l = printf("\001\002\007\v\010\f\r\n");
 	printf("%d",l);
 	m = 	printf("hola loco %X",q);
 	printf("%d",m);
